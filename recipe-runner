@@ -123,12 +123,12 @@ def main():
                     if exitcode == 0:
                         output = "\n\"%s\",\"%s\",\"OK\",\"\"" % (recipe_path, datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
                     else:
-                        output = "\n\"%s\",\"%s\",\"ERROR: %s\",\"\"" % (recipe_path, datetime.now().strftime("%Y-%m-%d %H:%M:%S"), err)
+                        output = "\n\"%s\",\"%s\",\"ERROR: %s\",\"\"" % (os.path.basename(recipe_path), datetime.now().strftime("%Y-%m-%d %H:%M:%S"), err)
 
                 results_file = os.path.join(search_path, "recipe_runner_results.csv")
                 if not os.path.exists(results_file):
                     with open(results_file, "wb") as output_file:
-                        output_file.write("\"RECIPE PATH\",\"LAST RUN\",\"RUN RESULT\",\"NOTES\"")
+                        output_file.write("\"RECIPE\",\"LAST RUN\",\"RUN RESULT\",\"NOTES\"")
                 with open(results_file, "ab") as output_file:
                     output_file.write(output)
 
