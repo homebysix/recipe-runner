@@ -112,7 +112,7 @@ def main():
 
                 if filename.endswith(".%s.recipe" % args.skip):
                     print "Skipping %s..." % recipe_path
-                    output = "\n\"%s\",\"%s\",\"SKIPPED\",\"\"" % (recipe_path, datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+                    output = "\n\"%s\",\"%s\",\"SKIPPED\",\"\"" % (os.path.basename(recipe_path), datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
 
                 else:
 
@@ -121,7 +121,7 @@ def main():
                     exitcode, out, err = get_exitcode_stdout_stderr(cmd)
 
                     if exitcode == 0:
-                        output = "\n\"%s\",\"%s\",\"OK\",\"\"" % (recipe_path, datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+                        output = "\n\"%s\",\"%s\",\"OK\",\"\"" % (os.path.basename(recipe_path), datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
                     else:
                         output = "\n\"%s\",\"%s\",\"ERROR: %s\",\"\"" % (os.path.basename(recipe_path), datetime.now().strftime("%Y-%m-%d %H:%M:%S"), err)
 
